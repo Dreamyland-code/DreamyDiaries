@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4effb">
+  <meta name="description" content="A private little space for your diary, plans, moods and memories.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="DreamyDiaries">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <title>DreamyDiaries</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="DreamyDiaries home">
+        <span class="brand-mark">✿</span>
+        <span><strong>DreamyDiaries</strong><small>Your days, your thoughts, your little world.</small></span>
+      </a>
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle dark mode" title="Toggle dark mode">☾</button>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL SPACE</p>
+          <h1>A little space for <em>you.</em></h1>
+          <p class="sub">Keep your plans, memories and little moments together.</p>
+        </div>
+        <div class="today-pill"><span>✧</span><span id="todayLabel"></span></div>
+      </section>
+
+      <section class="layout">
+        <aside class="panel calendar-panel">
+          <div class="section-head">
+            <div><p class="eyebrow">YOUR SCHEDULE</p><h2>Calendar</h2></div>
+            <div class="month-controls">
+              <button id="prevMonth" class="small-btn" aria-label="Previous month">‹</button>
+              <button id="nextMonth" class="small-btn" aria-label="Next month">›</button>
+            </div>
+          </div>
+          <div class="month-title" id="monthTitle"></div>
+          <div class="calendar-grid weekday-row">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+          <div class="calendar-grid" id="calendar"></div>
+          <div class="legend"><span><i class="dot journal-dot"></i> Diary</span><span><i class="dot task-dot"></i> Tasks</span></div>
+          <div class="selected-date-card">
+            <span class="eyebrow">SELECTED DAY</span>
+            <strong id="selectedDateLabel"></strong>
+            <button id="todayBtn" class="text-btn">Back to today ↗</button>
+          </div>
+        </aside>
+
+        <div class="content-column">
+          <section class="panel journal-panel">
+            <div class="section-head">
+              <div><p class="eyebrow">YOUR PRIVATE PAGES</p><h2>Daily diary</h2></div>
+              <button id="favoriteBtn" class="favorite-btn" type="button" aria-pressed="false" title="Add this entry to favourites">♡</button>
+            </div>
+            <label class="field-label" for="entryTitle">Entry title</label>
+            <input id="entryTitle" class="text-input" maxlength="100" placeholder="A little title for today...">
+            <label class="field-label" for="entryText">What's on your mind?</label>
+            <textarea id="entryText" placeholder="Write about your day, your thoughts, or anything you want to remember..."></textarea>
+            <div class="journal-footer">
+              <label class="mood-label" for="moodSelect">Today's mood
+                <select id="moodSelect">
+                  <option value="">Choose a mood</option>
+                  <option value="😊 Happy">😊 Happy</option>
+                  <option value="😌 Calm">😌 Calm</option>
+                  <option value="🥰 Loved">🥰 Loved</option>
+                  <option value="🤩 Excited">🤩 Excited</option>
+                  <option value="😐 Okay">😐 Okay</option>
+                  <option value="😔 Sad">😔 Sad</option>
+                  <option value="😣 Stressed">😣 Stressed</option>
+                  <option value="😴 Tired">😴 Tired</option>
+                </select>
+              </label>
+              <span id="saveStatus" class="save-status">Saved on this device</span>
+            </div>
+          </section>
+
+          <section class="panel tasks-panel">
+            <div class="section-head">
+              <div><p class="eyebrow">ONE STEP AT A TIME</p><h2>Daily to-do list</h2></div>
+              <span class="task-count" id="taskCount">0 tasks</span>
+            </div>
+            <form id="taskForm" class="task-form">
+              <input id="taskInput" class="text-input" maxlength="140" placeholder="Add something you want to do..." autocomplete="off">
+              <button class="primary-btn" type="submit">Add task +</button>
+            </form>
+            <div id="taskList" class="task-list"></div>
+            <div class="progress-wrap">
+              <div class="progress-label"><span>Daily progress</span><strong id="progressText">0%</strong></div>
+              <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel search-panel">
+        <div class="section-head">
+          <div><p class="eyebrow">LITTLE MEMORIES</p><h2>Find an old entry</h2></div>
+          <span class="soft-icon">⌕</span>
+        </div>
+        <div class="search-row">
+          <input id="searchInput" class="text-input" placeholder="Search titles or diary text...">
+          <button id="searchBtn" class="secondary-btn">Search</button>
+        </div>
+        <div id="searchResults" class="search-results"><p class="muted">Your saved diary entries will appear here when you search.</p></div>
+      </section>
+
+      <section class="panel favorites-panel">
+        <div class="section-head">
+          <div><p class="eyebrow">YOUR SPECIAL MOMENTS</p><h2>Favourites <span class="favorite-heading-heart">♥</span></h2></div>
+          <span id="favoriteCount" class="task-count">0 saved</span>
+        </div>
+        <div id="favoriteList" class="favorite-list"><p class="muted">Entries you favourite will appear here.</p></div>
+      </section>
+
+      <footer>
+        <p>Made with care, just for you. <span>✿</span></p>
+        <p class="privacy-note">Your diary is stored in this browser on this device. It is not uploaded to a server.</p>
+<p><a href="privacy.html" target="_blank">Privacy Policy</a></p>
+        <div class="data-actions">
+          <button id="exportBtn" class="text-btn">Export my data</button>
+          <label class="text-btn import-label">Import backup<input id="importFile" type="file" accept="application/json" hidden></label>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
